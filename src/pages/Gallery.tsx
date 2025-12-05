@@ -8,17 +8,23 @@ import productDoor from "@/assets/product-door.jpg";
 import productSlidingWindow from "@/assets/product-sliding-window.jpg";
 import productSlidingDoor from "@/assets/product-sliding-door.jpg";
 import heroImage from "@/assets/hero-factory.jpg";
+import gallery1 from "@/assets/gallery-1.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
 
 const galleryImages = [
-  { src: productWindow, title: "UPVC Window Installation" },
+  { src: gallery1, title: "Building with UPVC Windows" },
+  { src: gallery2, title: "UPVC Sliding Door Installation" },
+  { src: gallery3, title: "UPVC Windows & Door Project" },
+  { src: productWindow, title: "UPVC Kitchen Window" },
+  { src: heroImage, title: "Modern House with UPVC" },
+  { src: productSlidingWindow, title: "3-Panel Sliding Window" },
+  { src: gallery4, title: "UPVC Balcony Door" },
   { src: productDoor, title: "UPVC Door Design" },
-  { src: productSlidingWindow, title: "Sliding Window Project" },
-  { src: productSlidingDoor, title: "Sliding Door Installation" },
-  { src: heroImage, title: "Our Manufacturing Facility" },
-  { src: productWindow, title: "Residential Window Project" },
-  { src: productDoor, title: "Commercial Door Installation" },
-  { src: productSlidingWindow, title: "Modern Sliding Windows" },
-  { src: productSlidingDoor, title: "Panoramic Sliding Doors" },
+  { src: productSlidingDoor, title: "Large Sliding Door" },
+  { src: gallery5, title: "Building Exterior Installation" },
 ];
 
 const Gallery = () => {
