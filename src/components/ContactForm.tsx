@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -28,23 +29,41 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const { error } = await supabase.from("contact_submissions").insert({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        service_type: formData.serviceType,
+        location: formData.projectLocation,
+        quantity: formData.quantity || null,
+      });
 
-    toast({
-      title: "Quote Request Submitted!",
-      description: "We'll get back to you within 24 hours.",
-    });
+      if (error) throw error;
 
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      serviceType: "",
-      projectLocation: "",
-      quantity: "",
-    });
-    setIsSubmitting(false);
+      toast({
+        title: "Quote Request Submitted!",
+        description: "We'll get back to you within 24 hours.",
+      });
+
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        serviceType: "",
+        projectLocation: "",
+        quantity: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Submission Failed",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
