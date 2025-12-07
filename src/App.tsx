@@ -14,6 +14,7 @@ import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import WhatsAppButton from "./components/WhatsAppButton";
+import ProductChatbot from "./components/ProductChatbot";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
             <WhatsAppButton />
+            <ProductChatbot />
           </AuthProvider>
         </BrowserRouter>
       </TooltipProvider>
