@@ -30,6 +30,7 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
+      // Save to database
       const { error } = await supabase.from("contact_submissions").insert({
         name: formData.name,
         phone: formData.phone,
@@ -41,9 +42,23 @@ const ContactForm = () => {
 
       if (error) throw error;
 
+      // Send email notifications (don't block on this)
+      supabase.functions.invoke("send-contact-email", {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service_type: formData.serviceType,
+          location: formData.projectLocation,
+          quantity: formData.quantity || null,
+        },
+      }).catch((emailError) => {
+        console.error("Email notification failed:", emailError);
+      });
+
       toast({
         title: "Quote Request Submitted!",
-        description: "We'll get back to you within 24 hours.",
+        description: "We'll get back to you within 24 hours. A confirmation email has been sent.",
       });
 
       setFormData({
